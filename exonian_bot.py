@@ -27,7 +27,7 @@ from discord.ext import tasks
 
 # -------------------- CONFIG --------------------
 
-TOKEN = ""  # <-- REPLACE THIS
+TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 
 CONFIG_PATH = Path("exonian_config.json")
 
@@ -373,6 +373,6 @@ async def sweeper():
 # -------------------- RUN --------------------
 
 if __name__ == "__main__":
-    if not TOKEN or TOKEN == "PASTE_YOUR_DISCORD_BOT_TOKEN_HERE":
-        raise SystemExit("Please paste your Discord bot token into TOKEN in this file.")
+    if not TOKEN:
+        raise SystemExit("Please set the DISCORD_BOT_TOKEN environment variable.")
     bot.run(TOKEN)
